@@ -108,7 +108,7 @@ More detailed steps to come...
 1. Run `gpg --expert --edit-key $GPGKEY`
     1. `addkey`
     1. `4` - RSA (sign only)
-    1. keysize `2048`
+    1. keysize `2048` (this is as big as the YubiKeys support)
     1. valid for `7m`
     1. `yes` this is correct
     1. `addkey`
