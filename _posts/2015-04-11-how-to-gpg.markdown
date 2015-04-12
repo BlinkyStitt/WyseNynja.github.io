@@ -61,7 +61,6 @@ More in depth steps to come...
     * Create a VDI, dynamically allocated, 80 GB drive
 1. Open Settings > Storage
 1. Select the CD/DVD Drive and select the Lubuntu alternate ISO
-    * Sadly, the fixes for the Chromebook make HGB's ISO unstable under Virtualbox
 1. Click "OK"
 1. Click "Start"
 1. Follow the prompts to install Lubuntu
