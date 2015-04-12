@@ -42,7 +42,7 @@ On your normal Laptop:
     * 2048 MB of RAM
     * Create a VDI, dynamically allocated, 80 GB drive
 1. Open Settings > Storage
-1. Select the CD/DVD Drive and select the Lubuntu alternate ISO
+1. Select the CD/DVD Drive and select the Lubuntu minimal ISO
 1. Click "OK"
 1. Click "Start"
 1. Follow the prompts to install Lubuntu
@@ -95,17 +95,17 @@ On your Chromebook:
 # Todo
 
 1. More detailed steps for APTonCD
-1. HGB's Lubuntu comes with a couple of PPAs. How should we get updates from them to the offline system.
+1. HGB's Lubuntu comes with a couple of PPAs. How should we get updates from them to the offline system
 1. Figure out how to negate BadUSB attacks
 1. Build the ROM from source
 1. Build the Lubuntu ISO from source
 1. Install a larger SSD
 1. Install personal dotfiles
-1. Figure out how to use APTonCD's meta package. When I tried it the first time it tried to install some extra things since the VM had a couple extra things that I didn't want to bring over.
+1. Figure out how to use APTonCD's meta package. When I tried it the first time it tried to install some extra things since the VM had a couple extra things that I didn't want to bring over
 
 
 # Notes
 
-1. There are tons of Linux distros to choose from. I chose the Acer C720 and HugeGreenBug's Lubuntu  because he and some other people like John Lewis have already done the work to get everything working smoothly.
-1. The fixes for the Chromebook make HGB's ISO unstable under Virtualbox.
+1. There are tons of Linux distros to choose from. I chose the Acer C720 and HugeGreenBug's Lubuntu  because he and some other people like John Lewis have already done the work to get everything working smoothly
+1. The fixes for the Chromebook make HGB's ISO unstable under Virtualbox
 
