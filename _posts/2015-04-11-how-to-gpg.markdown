@@ -1,0 +1,187 @@
+---
+layout: post
+title:  "How To GPG"
+date:   2015-04-11 20:27:33
+categories: security
+---
+
+As of April 6, 2015, my personal GPG Key fingerprint is [59E0 D75B B78C D750 950B 1E86 A10C 1BAB 5EFF 68B7]({{ site.baseurl }}/assets/A10C1BAB5EFF68B7.asc). Don't trust this site's word for it! Check out all the ways I've verified this key at [KeyBase.io](https://keybase.io/bwstitt/).
+
+As of August 6, 2012, my work GPG Key fingerprint is [CE65 58E5 BD33 AB5D C650 1B79 7B24 E553 1A97 F7CF]({{ site.baseurl }}/assets/7B24E5531A97F7CF.asc).
+
+Managing keys is a complicated process, so I've recorded everything I've done or may need to do here. This is still a work in progress.
+
+
+# Things to buy
+
+1. [Tin foil hat](http://en.wikipedia.org/wiki/Tin_foil_hat)
+1. [Acer C720 Chromebook](http://www.amazon.com/mn/search/?_encoding=UTF8&camp=1789&creative=390957&field-keywords=chromebook%20acer%20c720&linkCode=ur2&tag=stitth-20&url=search-alias%3Daps&linkId=MS6KQH4YOWZHFO4C)
+1. [USB Flash drive](http://www.amazon.com/b/?_encoding=UTF8&ajr=0&camp=1789&creative=390957&linkCode=ur2&node=3151491&tag=stitth-20&linkId=CYJSSRATO647ERMJ)
+1. [YubiKey NEO](http://www.amazon.com/gp/product/B00LX8KZZ8/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B00LX8KZZ8&linkCode=as2&tag=stitth-20&linkId=DSWT4HBC5SLHZNLG) or [YubiKey NEO-n](http://www.amazon.com/gp/product/B00O8ST7MM/ref=as_li_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=B00O8ST7MM&linkCode=as2&tag=stitth-20&linkId=FQO4FJIRY2FYS7LC)
+
+
+# Things to download
+
+1. [HugeGreenBug's Lubuntu 14.04 64bit for Acer C720](https://www.distroshare.com/distros/get/16/)
+1. Virtualbox
+1. [Lubuntu 14.04 64bit Minimal](https://help.ubuntu.com/community/Installation/MinimalCD)
+
+
+# Places to Donate
+
+1. Donate bitcoin to John Lewis: [16xnfmKiwAwYyAUh25sJ7rQeZdMn4WksRV](
+bitcoin:16xnfmKiwAwYyAUh25sJ7rQeZdMn4WksRV)
+1. Donate bitcoin to Huge Green Bug: [18Kty1XFh7pwwT8sbhNzmGuzsmgeFwUsKS](bitcoin:18Kty1XFh7pwwT8sbhNzmGuzsmgeFwUsKS)
+1. Donate to [GPG Tools](https://gpgtools.org/donate.html)
+1. Donate to [GnuPG](https://gnupg.org/donate/)
+
+
+# Setup the Chromebook
+
+1. Put on your tin foil hat
+1. Remove the write protect screw from the chromebook
+1. Run [John Lewis' script](https://johnlewis.ie/custom-chromebook-firmware/rom-download/) to make booting linux on the Chromebook easy.
+1. Put the write protect screw back
+1. Install HugeGreenBug's Lubuntu on the Chromebook
+    * Enable full disk encryption
+    * Disable bluetooth and wifi
+    * Firewall all inbound and outbound traffic
+    * Change apt sources to install from /mnt/APTonCD
+
+
+# Setup the Virtual Machine for Updating the Chromebook
+
+The fixes for the Chromebook make HGB's ISO unstable under Virtualbox.
+
+More in depth steps to come...
+
+1. Open Virtualbox
+1. Create a new box named "Offline Lubuntu 14.04 Updater"
+    * 2048 MB of RAM
+    * Create a VDI, dynamically allocated, 80 GB drive
+1. Open Settings > Storage
+1. Select the CD/DVD Drive and select the Lubuntu alternate ISO
+    * Sadly, the fixes for the Chromebook make HGB's ISO unstable under Virtualbox
+1. Click "OK"
+1. Click "Start"
+1. Follow the prompts to install Lubuntu
+    * No need for full disk encryption here. Your host system is already encrypted, right?!
+1. Install [APTonCD](http://aptoncd.sourceforge.net/)
+1. Install gpg2 and other tools for interacting with the smart card
+1. Create an ISO with APTonCD and save it to the USB flash drive
+
+Still need to figure out:
+
+1. HGB's Lubuntu comes with a couple of PPAs. How should we get updates from them to the offline system.
+
+
+# Updating the Chromebook
+
+More detailed steps to come...
+
+1. Plug in the USB flash drive with the ISO from APTonCD.
+1. Double click the ISO to mount it
+1. `apt-get update`?
+1. `apt-get install gpg2 ...`
+
+
+# Creating the Key
+
+1. Link gpg2 to gpg so you always use gpg2 even when if you accidently run gpg
+1. Run `gpg --gen-key`
+    1. `RSA (sign only)`
+    1. keysize `4096`
+    1. valid for `7m`
+    1. save the date to your calendar with an alert a month in advance
+    1. `yes` this is correct
+    1. just enter Real Name and not Email or Comment
+    1. Say `O`kay
+1. Add `export GPGKEY=XXXXXXX` to your dotfiles (where "XXXXXXX" is your key ID)
+1. Close and re-open your terminal
+1. Run `gpg --edit-key $GPGKEY`
+    1. `adduid` for each of your keys
+    1. `uid 1`
+    1. `primary`
+    1. `save`
+1. Run `gpg --output ~/Backups/$GPGKEY.revoke --gen-revoke $GPGKEY`
+    1. Key has been comprised
+1. Run `gpg -a --export-secret-keys $GPGKEY >~/Backups/$GPGKEY.key`
+1. Run `gpg --expert --edit-key $GPGKEY`
+    1. `addkey`
+    1. `4` - RSA (sign only)
+    1. keysize `2048`
+    1. valid for `7m`
+    1. `yes` this is correct
+    1. `addkey`
+    1. `6` - RSA (encrypt only)
+    1. keysize `2048`
+    1. valid for `7m`
+    1. `yes` this is correct
+    1. `addkey`
+    1. `8` - RSA (set your own capabilities)
+    1. `s` - Toggle the sign capability
+    1. `e` - Toggle the encrypt capability
+    1. `a` - Toggle the authenticate capability
+    1. Only authenticate should be enabled
+    1. `q` - Finished
+    1. keysize `2048`
+    1. valid for `7m`
+    1. `yes` this is correct
+    1. `save`
+1. Run `gpg --list-keys`
+1. Run `gpg --list-secret-keys`
+1. Run `gpg -a --export-secret-subkeys $GPGKEY >~/Backups/$GPGKEY.subkeys`
+1. `gpg -a --export $GPGKEY >~/Backups/$GPGKEY.asc`
+1. `export YOURUSBNAME=MyDrive` (Set this to whatever your drive is named)
+1. `cp ~/Backups/$GPGKEY.asc /media/$USER/$YOURUSBNAME/`
+
+
+# Setting up the Yubikey
+
+Export the subkeys for signing, encrypting, and authenticating to a YubiKey.
+
+1. Run `ykpersonalize -m82`
+1. Clear the yubikey slots or set them up for something
+1. Run `gpg --card-status`
+1. Run `gpg --card-edit`
+    1. `admin`
+    1. `passwd`
+    1. `3` - change Admin PIN
+    1. `1` - change PIN
+    1. `q` - quit
+    1. `name`
+    1. `lang`
+    1. `url`
+    1. `sex`
+    1. `login`
+    1. ` ` - just press enter to print some info
+    1. `quit`
+1. Run `gpg --edit-key $GPGKEY`
+    1. `toggle`
+    1. `key 1`
+    1. `keytocard`
+        `1` - Signature key
+    1. `key 2`
+    1. `keytocard`
+        `2` - Encryption key
+    1. `key 3`
+    1. `keytocard`
+        `3` - Authentication key
+    1. `save`
+1. `gpg --list-secret-keys $GPGKEY`
+1. `gpg --card-status`
+
+
+# Renewing the subkeys
+
+1. Steps coming soon!
+
+
+# Renewing the master key
+
+1. Steps coming soon!
+
+
+# Signing other Keys
+
+1. Steps coming soon!
