@@ -7,8 +7,10 @@
     <div class="footer-col-wrapper">
       <div class="footer-col  footer-col-1">
         <ul class="contact-list">
-          <li>{{ site.title }}</li>
           <li><a href="mailto:{{ site.email }}">{{ site.email }}</a></li>
+          {% if site.keybase_username %}
+          <li><a href="http://keybase.io/{{ site.keybase_username }}/">KeyBase.io</a></li>
+          {% endif %}
         </ul>
       </div>
 
@@ -42,6 +44,7 @@
             </a>
           </li>
           {% endif %}
+
         </ul>
       </div>
 
