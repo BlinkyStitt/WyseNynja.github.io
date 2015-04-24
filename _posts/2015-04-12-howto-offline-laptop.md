@@ -15,8 +15,8 @@ This post is a work in progress.
 # Buy
 
 1. [Tin foil hat](http://en.wikipedia.org/wiki/Tin_foil_hat)
-1. [Acer C720 Chromebook](http://www.amazon.com/mn/search/?_encoding=UTF8&camp=1789&creative=390957&field-keywords=chromebook%20acer%20c720&linkCode=ur2&tag=stitth-20&url=search-alias%3Daps&linkId=MS6KQH4YOWZHFO4C)
-1. [USB flash drive](http://www.amazon.com/b/?_encoding=UTF8&ajr=0&camp=1789&creative=390957&linkCode=ur2&node=3151491&tag=stitth-20&linkId=CYJSSRATO647ERMJ)
+1. [Acer C720 Chromebook](http://www.amazon.com/mn/search/?_encoding=UTF8&camp=1789&creative=390957&field-keywords=chromebook%20acer%20c720&linkCode=ur2&tag=stitth06-20&url=search-alias%3Daps&linkId=MS6KQH4YOWZHFO4C)
+1. [USB flash drive](http://www.amazon.com/b/?_encoding=UTF8&ajr=0&camp=1789&creative=390957&linkCode=ur2&node=3151491&tag=stitth06-20&linkId=CYJSSRATO647ERMJ)
 
 
 # Download
