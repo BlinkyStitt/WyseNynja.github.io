@@ -1,0 +1,19 @@
+---
+layout: default
+---
+
+<div class="home">
+
+  <h2>Guides</h2>
+
+  <ul class="post-list">
+    {% for guide in site.categories.guides %}
+      <li>
+        <h3>
+          <a class="post-link" href="{{ guide.url | prepend: site.baseurl }}">{{ guide.title }}</a>
+        </h3>
+      </li>
+    {% endfor %}
+  </ul>
+
+</div>
