@@ -1,10 +1,10 @@
 ---
 category: guides
-date:   2015-04-12 14:00:00
+date: 2015-04-12 14:00:00
 layout: page
 permalink: guides/offline-laptop
 tags: security
-title:  "Bryan's Offline Laptop Setup"
+title: "Bryan's Offline Laptop Setup"
 ---
 
 Given the uncountable number of security problems becoming public everyday, keeping private things secure seems impossible, especially if you are ever going to plug your computer into the internet.
