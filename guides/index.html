@@ -1,17 +1,33 @@
 ---
 layout: default
+title: Guides
+permalink: /guides/
 ---
 
 <div class="home">
 
-  <h2>Guides</h2>
+  <h1>How-tos and Guides</h1>
 
   <ul class="post-list">
-    {% for guide in site.categories.guides %}
+    {% assign guides = site.categories.guides | sort: 'date' %}
+    {% for guide in guides %}
       <li>
+        <span class="post-meta">
+          {{ guide.date | date: "%b %-d, %Y" }}
+          {% if guide.last_update %}
+            (Updated {{ guide.last_update | date: "%b %-d, %Y" }})
+          {% endif %}
+        </span>
+
         <h3>
           <a class="post-link" href="{{ guide.url | prepend: site.baseurl }}">{{ guide.title }}</a>
         </h3>
+
+        {% if guide.subheading %}
+        <span class="post-subheading">
+          - {{ guide.subheading }}
+        </span>
+        {% endif %}
       </li>
     {% endfor %}
   </ul>

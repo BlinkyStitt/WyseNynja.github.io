@@ -4,28 +4,27 @@ layout: default
 
 <div class="home">
 
-  <h2>Blog Posts</h2>
+  <h1>Blog Posts</h1>
 
   <ul class="post-list">
     {% for post in site.categories.posts %}
       <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <span class="post-meta">
+          {{ post.date | date: "%b %-d, %Y" }}
+          {% if post.last_update %}
+            (Last updated: {{ post.last_update | date: "%b %-d, %Y" }})
+          {% endif %}
+        </span>
 
         <h3>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
         </h3>
-      </li>
-    {% endfor %}
-  </ul>
 
-  <h2>How-tos and Guides</h2>
-
-  <ul class="post-list">
-    {% for guide in site.categories.guides %}
-      <li>
-        <h3>
-          <a class="post-link" href="{{ guide.url | prepend: site.baseurl }}">{{ guide.title }}</a>
-        </h3>
+        {% if post.subheading %}
+        <span class="post-subheading">
+          - {{ post.subheading }}
+        </span>
+        {% endif %}
       </li>
     {% endfor %}
   </ul>
