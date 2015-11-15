@@ -18,26 +18,32 @@ The steps assume you have a working installation of FreeNAS 9.3 running SSHd and
 
 2\. Open TCP port 18333 on your firewall and forward it to the testnet jail.
 
-3\. Install the following packages in the jail:
+3\. Make sure the system clock is accurate:
 
 {% highlight bash %}
 ssh freenas
 sudo -i
+
+ntpq -p
+{% endhighlight %}
+
+4\. Install the following packages in the jail:
+
+{% highlight bash %}
 tmux
 warden chroot testnet
-
 pkg update -f
 pkg upgrade
 pkg install ca_root_nss ccache autotools pkgconf gmake boost-libs openssl db48 git
 {% endhighlight %}
 
-4\. Make sure the installed packages have no known vulnerabilities:
+5\. Make sure the installed packages have no known vulnerabilities:
 
 {% highlight bash %}
 pkg audit -F
 {% endhighlight %}
 
-5\. Create a user in the jail to run bitcoind:
+6\. Create a user in the jail to run bitcoind:
 
 {% highlight bash %}
 adduser
@@ -68,7 +74,7 @@ adduser
     Goodbye!
 {% endhighlight %}
 
-6\. Login as the bitcoin user and build bitcoind:
+7\. Login as the bitcoin user and build bitcoind:
 
 {% highlight bash %}
 su -l bitcoin
@@ -93,9 +99,9 @@ gmake -j 4
 gmake check && echo ":D" || echo "D:"
 {% endhighlight %}
 
-7\. If the check succeeded, you will see a happy face and should continue. Otherwise, something has gone wrong and you should investigate gmake's output.
+8\. If the check succeeded, you will see a happy face and should continue. Otherwise, something has gone wrong and you should investigate gmake's output.
 
-8. Configure bitcoind, and move what you just built onto your PATH:
+9\. Configure bitcoind, and move what you just built onto your PATH:
 
 {% highlight bash %}
 mkdir -p ~/.bitcoin/testnet3
@@ -120,7 +126,7 @@ mv ~/bitcoinxt/src/bitcoin-cli ~/bin
 mv ~/bitcoinxt/src/bitcoin-tx ~/bin
 {% endhighlight %}
 
-8\. In a new tmux window, submit bitcoind's logs for processing:
+10\. In a new tmux window, submit bitcoind's logs for processing:
 
 {% highlight bash %}
 warden chroot testnet
@@ -128,28 +134,28 @@ su -l bitcoin
 tail -f ~/.bitcoin/testnet3/debug.log | nc bitcoin.dragon.zone 9000
 {% endhighlight %}
 
-9\. Return to the first tmux window, start bitcoind, and read the logs:
+11\. Return to the first tmux window, start bitcoind, and read the logs:
 
 {% highlight bash %}
 bitcoind
 tail -n 100 ~/.bitcoin/testnet3/debug.log
 {% endhighlight %}
 
-10\. Wait a few minutes for peers to connect to you and for blocks to download.
+12\. Wait a few minutes for peers to connect to you and for blocks to download.
 
-11\. Check your node's peers:
+13\. Check your node for any XT peers:
 
 {% highlight bash %}
 bitcoin-cli getpeerinfo | grep subver
 {% endhighlight %}
 
-12\. Compare your node's block count with [http://ml.toom.im/](http://ml.toom.im/):
+14\. Compare your node's block count with [http://ml.toom.im/](http://ml.toom.im/):
 
 {% highlight bash %}
 bitcoin-cli getblockcount
 {% endhighlight %}
 
-13\. You did it!
+15\. You did it!
 
 
 [bitcoin_core]: https://github.com/bitcoin/bitcoin
