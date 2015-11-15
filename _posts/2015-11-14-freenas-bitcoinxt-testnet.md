@@ -8,7 +8,7 @@ title: "Running BitcoinXT inside a FreeNAS Jail"
 
 I've been running a [Bitcoin Core][bitcoin_core] full node in a [FreeNAS 9.3][freenas] [jail][freenas_jails] for a while now. But due to the politicing happening around Bitcoin Core, I've decided to run [BitcoinXT][bitcoinxt] instead. Before jumping all the way over, I want to run XT v0.11 on the [testnet][testnet].
 
-[jtoomin][jtoomin] is running tests with XT and [provided steps for how you can help him][reddit]. I tweaked the steps a bit to get them working with FreeNAS.
+[jtoomim][jtoomim] is running tests with XT and [provided steps for how you can help him][reddit]. I tweaked the steps a bit to get them working with FreeNAS.
 
 The steps assume you have a working installation of FreeNAS 9.3 running SSHd and that you know how to use [tmux][tmux].
 
@@ -162,7 +162,7 @@ bitcoin-cli getblockcount
 [bitcoinxt]: https://bitcoinxt.software/
 [freenas]: http://www.freenas.org/
 [freenas_jails]: https://doc.freenas.org/9.3/freenas_jails.html
-[jtoomin]: http://github.com/jtoomim
+[jtoomim]: http://github.com/jtoomim
 [reddit]: https://www.reddit.com/r/bitcoinxt/comments/3sq2r3/testnet_is_forking_and_unforking/cwzzhm3
 [testnet]: https://en.bitcoin.it/wiki/Testnet
 [tmux]: https://tmux.github.io/
