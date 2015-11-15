@@ -6,6 +6,7 @@ permalink: guides/freenas-bitcoinxt-testnet
 redirect_from: "/posts/2015/11/14/freenas-bitcoinxt-testnet.html"
 tags: bitcoin
 title: "Running BitcoinXT inside a FreeNAS Jail"
+subheading: "Testing the scalability of Bitcoin"
 ---
 
 I've been running a [Bitcoin Core][bitcoin_core] full node in a [FreeNAS 9.3][freenas] [jail][freenas_jails] for a while now. But due to the politicing happening around Bitcoin Core, I've decided to run [BitcoinXT][bitcoinxt] instead. Before jumping all the way over, I want to run XT v0.11 on the [testnet][testnet].

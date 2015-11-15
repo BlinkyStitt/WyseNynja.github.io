@@ -5,6 +5,7 @@ layout: page
 permalink: guides/offline-laptop
 tags: security
 title: "Bryan's Offline Laptop Setup"
+subheading: "The Internet is a dangeours place"
 ---
 
 Given the uncountable number of security problems becoming public everyday, keeping private things secure seems impossible, especially if you are ever going to plug your computer into the internet.
