@@ -1,8 +1,10 @@
 ---
-category: posts
-layout: post
-tags: bitcoin
+category: guides
 date: 2015-11-14 22:37:33
+layout: page
+permalink: guides/freenas-bitcoinxt-testnet
+redirect_from: "/posts/2015/11/14/freenas-bitcoinxt-testnet.html"
+tags: bitcoin
 title: "Running BitcoinXT inside a FreeNAS Jail"
 ---
 
